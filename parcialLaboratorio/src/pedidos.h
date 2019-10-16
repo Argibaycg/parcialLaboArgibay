@@ -16,9 +16,12 @@ typedef struct{
 
 int initIsEmptyPedidos(s_pedido pedidos[], int cantidad);
 int searchPedidoEmpty(s_pedido pedidos[], int cantidad);
-int altaDePedido(s_pedido pedidos[],int index, int idPedido);
+int altaDePedido(s_pedido pedidos[],int index, int idPedido, int idCliente);
 int listarPedidosPendientes(s_pedido pedidos[], int cantidad);
 int buscarPedidoPorId(s_pedido pedidos[], int idPedido,int *pUbicacionPedido);
 int procesarResiduos(s_pedido pedidos[]);
+void ordenarPedidosPorId(s_pedido pedidos[], int cantidad);
+void contadorPedidosPendientes(s_pedido pedidos[], int idCliente, int* cantidadPendientes);
+int bucarPedidoExistente(s_pedido pedidos[], int cantidad, int* idParaAlta);
 
 #endif /* PEDIDOS_H_ */

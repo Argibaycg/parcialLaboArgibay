@@ -20,18 +20,26 @@ int main(void) {
 
 	s_cliente clientes[CANTIDAD_CLIENTES] = {
 			{"Pepsico","23-22333444-0","mitre",234,"avellaneda",130,1},
-			{"Terrabusi","22-22444444-0","belgrano",123,"varela",131,1}
+			{"Terrabusi","22-22444444-0","belgrano",123,"varela",132,1},
+			{"Tregar","22-22444333-0","alsina",1000,"varela",131,1}
 	};
-	s_pedido pedidos[CANTIDAD_PEDIDOS];
+	s_pedido pedidos[CANTIDAD_PEDIDOS] = {
+			{1000,0,0,0,1020,132,0,1},
+			{800,0,0,0,1021,132,0,1},
+			{233,0,0,0,1022,131,0,1},
+			{100,0,0,0,1023,132,0,1},
+			{900,0,0,0,1024,130,0,1}
+	};
 
 	int idCliente = CANTIDAD_CLIENTES;
 	int idPedido = CANTIDAD_PEDIDOS;
 	int opcion = 0;
 	int indexCliente;
 	int indexPedido;
+	int auxIdParaAlta;
 
 	//initIsEmptyClientes(clientes,CANTIDAD_CLIENTES);
-	initIsEmptyPedidos(pedidos,CANTIDAD_PEDIDOS);
+	//initIsEmptyPedidos(pedidos,CANTIDAD_PEDIDOS);
 	do {
 					__fpurge(stdin);
 					printf("1) ALTA CLIENTE\n");
@@ -53,7 +61,6 @@ int main(void) {
 						}
 						break;
 					case 2:modificarCliente(clientes,CANTIDAD_CLIENTES);
-							;
 						break;
 					case 3:
 						listarClientes(clientes,CANTIDAD_CLIENTES);
@@ -61,12 +68,19 @@ int main(void) {
 						;
 						break;
 					case 4:
+						ordenarClientesPorId(clientes,CANTIDAD_CLIENTES);
 						listarClientes(clientes,CANTIDAD_CLIENTES);
+						if(bucarClienteExistente(clientes,CANTIDAD_CLIENTES, &auxIdParaAlta)==0)
+						{
 					    indexPedido = searchPedidoEmpty(pedidos,CANTIDAD_PEDIDOS);
-						if(altaDePedido(pedidos,indexPedido,idPedido)==0)
+						if(altaDePedido(pedidos,indexPedido,idPedido,auxIdParaAlta)==0)
 					    {
 						idPedido++;
 					    }
+						}else
+						{
+							printf("No existe el cliente con ese id para recolectar.\n");
+						}
 						break;
 					case 5:
 						if(listarPedidosPendientes(pedidos,CANTIDAD_PEDIDOS)==0)
@@ -74,15 +88,16 @@ int main(void) {
 						procesarResiduos(pedidos);
 						}
 						break;
-					case 6:listarClientes(clientes,CANTIDAD_CLIENTES);
+					case 6:ordenarPedidosPorId(pedidos,CANTIDAD_PEDIDOS);
+					listarCantidadPedidosPendientes(pedidos,clientes);
 						break;
-					case 7:listarPedidosPendientesInforme(pedidos,clientes);
+					case 7:ordenarPedidosPorId(pedidos,CANTIDAD_PEDIDOS);
+						listarPedidoPendientes(pedidos,clientes);
 						break;
-					case 8:
-						;
+					case 8:listarPedidosCompletos(pedidos,clientes);
 						break;
 					case 9:
-						;
+						printf("Gracias por usar el programa.\n");
 						break;
 					default:
 						printf("No ingreso una opcion valida.");
