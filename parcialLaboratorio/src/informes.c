@@ -13,6 +13,13 @@
 #define CANTIDAD_CLIENTES 100
 #define CANTIDAD_PEDIDOS 1000
 
+/** \brief lista los pedidos pendientes
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarPedidoPendientes(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -53,6 +60,13 @@ int listarPedidoPendientes(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief lista los pedidos completos
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarPedidosCompletos(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -95,6 +109,13 @@ int listarPedidosCompletos(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief lista los clientes con la cantidad de pedidos pendientes
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarCantidadPedidosPendientes(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;

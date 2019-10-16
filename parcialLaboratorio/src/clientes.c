@@ -14,6 +14,13 @@
 #define CANTIDAD_PEDIDOS 1000
 
 
+/** \brief Inicializa los is Empty Clientes
+*
+* \param list clientes[]
+* \param int cantidad
+* \return int Return (-1) if Error [Invalid length or NULL pointer or if the values given by the user are incorrect] - (0) if Ok
+*
+*/
 int initIsEmptyClientes(s_cliente clientes[], int cantidad)
 {
 	int i;
@@ -27,6 +34,13 @@ int initIsEmptyClientes(s_cliente clientes[], int cantidad)
 	return OK;
 }
 
+/** \brief busca la posicion de isEmpty en 0
+* \param list clientes[]
+* \param int cantidad
+* \return int la posicion con isEmpty en 0 - (-1) if Error [Invalid length or NULL pointer or if the values given by the user are incorrect]
+free space] - (0) if Ok
+*
+*/
 int searchClienteEmpty(s_cliente clientes[], int cantidad)
 {
 	int retorno = ERROR;
@@ -44,6 +58,13 @@ int searchClienteEmpty(s_cliente clientes[], int cantidad)
 	return retorno;
 }
 
+/** \brief da de alta un cliente
+* \param list clientes[]
+* \param int index
+* \param int idCLiente
+* \return int Return (-1) if Error [NULL pointer or without free space] - (0) if Ok
+*
+*/
 int altaCliente(s_cliente clientes[], int index,int idCliente)
 {
 	int retorno = ERROR;
@@ -118,6 +139,12 @@ int altaCliente(s_cliente clientes[], int index,int idCliente)
 	return retorno;
 }
 
+/** \brief modifica localidad o calle del cliente
+* \param list clinetes[]
+* \param int cantidad
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int modificarCliente(s_cliente clientes[],int cantidad)
 {
 	int retorno = ERROR;
@@ -181,6 +208,13 @@ int modificarCliente(s_cliente clientes[],int cantidad)
 	return retorno;
 }
 
+/** \brief busca in clitente por idCLiente
+*
+* \param list cliente[]
+* \param int idCLiente
+* \return retorna la posicion del cliente buscado o (-1) Error [NULL pointer or withoutfree space]
+*
+*/
 int buscarClientePorId(s_cliente clientes[], int idCliente)
 {
 	int retorno = -1;
@@ -198,6 +232,13 @@ int buscarClientePorId(s_cliente clientes[], int idCliente)
 	return retorno;
 }
 
+/** \brief add in a existing list of employees the values received as parameters
+*		   in the first empty position
+* \param list clientes[]
+* \param int cantidad
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarClientes(s_cliente clientes[], int cantidad)
 {
 	int retorno = ERROR;
@@ -228,6 +269,12 @@ int listarClientes(s_cliente clientes[], int cantidad)
 	return retorno;
 }
 
+/** \brief da de baja a un cliente
+* \param list clientes[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int bajaCliente(s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -263,6 +310,15 @@ int bajaCliente(s_cliente clientes[])
 
 }
 
+/** \brief add in a existing list of employees the values received as parameters
+*		   in the first empty position
+* \param list clientes[]
+* \param int cantidad
+* \param int* idParaAlta
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int bucarClienteExistente(s_cliente clientes[], int cantidad, int* idParaAlta)
 {
 	int retorno = ERROR;
@@ -285,6 +341,14 @@ int bucarClienteExistente(s_cliente clientes[], int cantidad, int* idParaAlta)
 	return retorno;
 }
 
+/** \brief ordena los clientes por ID
+*
+* \param list employee*
+* \param len int
+
+* \return void
+*
+*/
 void ordenarClientesPorId(s_cliente clientes[],  int cantidad)
 {
     int i;

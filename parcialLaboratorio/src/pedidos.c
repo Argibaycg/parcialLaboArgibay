@@ -12,7 +12,14 @@
 #define CANTIDAD_CLIENTES 100
 #define CANTIDAD_PEDIDOS 1000
 
-
+/** \brief inicializa los pedidos con isEmpty en 0
+* \param list pedidos[]
+* \param int cantidad
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without
+free space] - (0) if Ok
+*
+*/
 int initIsEmptyPedidos(s_pedido pedidos[], int cantidad)
 {
 	int i;
@@ -25,7 +32,13 @@ int initIsEmptyPedidos(s_pedido pedidos[], int cantidad)
 	}
 	return 0;
 }
-
+/** \brief busca la posicion de pedido con isEmpty en 0
+* \param list pedidos[]
+* \param int cantidad
+*
+* \return int retorna la posicion del pedido o (-1) if Error [Invalid length or NULL pointer or without free space]
+*
+*/
 int searchPedidoEmpty(s_pedido pedidos[], int cantidad)
 {
 	int retorno = ERROR;
@@ -46,6 +59,13 @@ int searchPedidoEmpty(s_pedido pedidos[], int cantidad)
 	return retorno;
 }
 
+/** \brief lista los pedidos pendientes
+* \param list pedidos[]
+* \param int cantidad
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarPedidosPendientes(s_pedido pedidos[], int cantidad)
 {
 	int retorno = ERROR;
@@ -73,6 +93,16 @@ int listarPedidosPendientes(s_pedido pedidos[], int cantidad)
 	return retorno;
 }
 
+/** \brief da de alta un pedido
+* \param list clientes[]
+* \param int index
+* \param int idPedido
+* \param int idCliente
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without
+free space] - (0) if Ok
+*
+*/
 int altaDePedido(s_pedido pedidos[],int index, int idPedido, int idCliente)
 {
 	int retorno = ERROR;
@@ -101,6 +131,15 @@ int altaDePedido(s_pedido pedidos[],int index, int idPedido, int idCliente)
 	return retorno;
 }
 
+/** \brief busca pedido por Id pedido
+* \param list clientes[]
+* \param int idPedido
+* \param int* pUbicacionPedido
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without
+free space] - (0) if Ok
+*
+*/
 int buscarPedidoPorId(s_pedido pedidos[], int idPedido,int *pUbicacionPedido)
 {
 	int retorno = ERROR;
@@ -119,6 +158,12 @@ int buscarPedidoPorId(s_pedido pedidos[], int idPedido,int *pUbicacionPedido)
 	return retorno;
 }
 
+/** \brief procesa los residuos de un pedido pendiente
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int procesarResiduos(s_pedido pedidos[])
 {
 	int retorno = ERROR;
@@ -195,6 +240,13 @@ int procesarResiduos(s_pedido pedidos[])
 	return retorno;
 }
 
+/** \brief ordena los pedidos por idCliente
+* \param list clientes[]
+* \param int cantidad
+*
+* \return void
+*
+*/
 void ordenarPedidosPorId(s_pedido pedidos[],  int cantidad)
 {
     int i;
@@ -219,6 +271,14 @@ void ordenarPedidosPorId(s_pedido pedidos[],  int cantidad)
     }
 }
 
+/** \brief cuenta la cantidad de pedidos en estado pendiente
+* \param list pedidos[]
+* \param int idCliente
+* \param int* cantidadPendientes
+*
+* \return void
+*
+*/
 void contadorPedidosPendientes(s_pedido pedidos[], int idCliente, int* cantidadPendientes)
 {
 	int i;
@@ -237,6 +297,14 @@ void contadorPedidosPendientes(s_pedido pedidos[], int idCliente, int* cantidadP
 
 }
 
+/** \brief busca si el id de pedido existe
+* \param list pedidos[]
+* \param int cantidad
+* \param int* idParaProcesar
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or withoutfree space] - (0) if Ok
+*
+*/
 int bucarPedidoExistente(s_pedido pedidos[], int cantidad, int* idParaProcesar)
 {
 	int retorno = ERROR;
