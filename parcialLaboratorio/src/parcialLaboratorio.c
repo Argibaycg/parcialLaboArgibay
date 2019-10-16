@@ -94,7 +94,8 @@ int main(void) {
 					case 7:ordenarPedidosPorId(pedidos,CANTIDAD_PEDIDOS);
 						listarPedidoPendientes(pedidos,clientes);
 						break;
-					case 8:listarPedidosCompletos(pedidos,clientes);
+					case 8:ordenarPedidosPorId(pedidos,CANTIDAD_PEDIDOS);
+						listarPedidosCompletos(pedidos,clientes);
 						break;
 					case 9:
 						printf("Gracias por usar el programa.\n");

@@ -182,14 +182,14 @@ int procesarResiduos(s_pedido pedidos[])
 			buscarPedidoPorId(pedidos,idPedido,&index);
 			auxKilosRetirados = pedidos[index].kilosRetirados;
 			printf("La cantidad de kilos para procesar en este pedido es: %d\n", pedidos[index].kilosRetirados);
-			utn_getNumber(&auxHPDE,auxKilosRetirados,10,2,"Cuantos kilos se procesan como HPDE?\n","Ingreso Invalido.\n");
+			utn_getNumber(&auxHPDE,auxKilosRetirados,0,2,"Cuantos kilos se procesan como HPDE?\n","Ingreso Invalido.\n");
 			if(auxHPDE > auxKilosRetirados)
 			{
 				printf("No podemos procesar mas que lo que tenemos.\n");
 				flag = 1;
-			}else if(auxHPDE <= 0)
+			}else if(auxHPDE < 0)
 			{
-				printf("No puede ser cero.\n");
+				printf("No puede ser menor a cero.\n");
 				flag = 1;
 			}else
 			{
@@ -197,14 +197,16 @@ int procesarResiduos(s_pedido pedidos[])
 				auxKilosRetirados = auxKilosRetirados - auxHPDE;
 				printf("Quedan %d kilos para seguir procesando.\n", auxKilosRetirados);
 			}
-			utn_getNumber(&auxLDPE,auxKilosRetirados,10,2,"Cuantos kilos se procesan como LDPE?.\n","Ingreso Invalido.\n");
+			if(auxKilosRetirados != 0)
+			{
+			utn_getNumber(&auxLDPE,auxKilosRetirados,0,2,"Cuantos kilos se procesan como LDPE?.\n","Ingreso Invalido.\n");
 			if(auxLDPE > auxKilosRetirados)
 			{
 				printf("No podemos procesar mas que lo que tenemos.\n");
 				flag = 1;
-			}else if(auxLDPE <= 0)
+			}else if(auxLDPE < 0)
 			{
-				printf("No puede ser cero.\n");
+				printf("No puede ser menor a cero.\n");
 				flag = 1;
 			}else
 			{
@@ -212,21 +214,25 @@ int procesarResiduos(s_pedido pedidos[])
 				auxKilosRetirados = auxKilosRetirados - auxLDPE;
 				printf("Quedan %d kilos para seguir procesando.\n", auxKilosRetirados);
 			}
-			utn_getNumber(&auxPP,auxKilosRetirados,10,2,"Cuantos kilos se procesan como PP?\n","Ingreso Invalido.\n");
+			}
+			if(auxKilosRetirados != 0)
+			{
+			utn_getNumber(&auxPP,auxKilosRetirados,0,2,"Cuantos kilos se procesan como PP?\n","Ingreso Invalido.\n");
 			if(auxPP > auxKilosRetirados)
 			{
 				printf("No podemos procesar mas que lo que tenemos.\n");
 				flag = 1;
-			}else if(auxPP <= 0)
+			}else if(auxPP < 0)
 			{
-				printf("No puede ser cero.\n");
+				printf("No puede ser menor a cero.\n");
 				flag = 1;
 			}else
 			{
 				pedidos[index].kilosPP = auxPP;
 				auxKilosRetirados = auxKilosRetirados - auxPP;
-				printf("Se desecharan %d kilos.\n", auxKilosRetirados);
 			}
+			}
+				printf("Se desecharan %d kilos.\n", auxKilosRetirados);
 			if(flag==0)
 			{
 				pedidos[index].estado = 1;
