@@ -16,24 +16,24 @@
 
 int main(void) {
 
-
-
 	s_cliente clientes[CANTIDAD_CLIENTES] = {
-			{"Pepsico","23-22333444-0","mitre",1230,"avellaneda",130,1},
-			{"Terrabusi","22-22444444-0","belgrano",123,"varela",132,1},
-			{"Pertutti","23-22333444-0","zeballos",234,"avellaneda",133,1},
-			{"Savant","22-22444444-0","lacarra",65,"gerli",134,1},
-			{"Tregar","22-22444333-0","alsina",1000,"lanus",131,1}
+			{"Telefonica","30-11223344-5","Lima",1234,"CABA",1,1},
+			{"DATASOFT","30-44556677-6","Corrientes",2547,"CABA",2,1},
+			{"NESTLE","30-88995521-9","cucha cucha",555,"LANUS",3,1},
+			{"TERRABUSI","30-56781423-5","rocha",784,"QUILMES",4,1},
+			{"DIA","31-54581253-3","Mitre",750,"AVELLANEDA",5,1},
+			{"QUILMES","30-51485759-6","rocha",741,"QUILMES",6,1}
 	};
 	s_pedido pedidos[CANTIDAD_PEDIDOS] = {
-			{1000,0,0,0,1020,132,0,1},
-			{200,100,200,300,1021,134,1,1},
-			{233,0,0,0,1022,131,0,1},
-			{100,0,0,0,1023,133,0,1},
-			{600,200,0,0,1024,133,1,1},
-			{233,0,0,0,1025,131,0,1},
-			{0,0,50,50,1026,132,1,1},
-			{900,0,0,0,1027,130,0,1}
+			{1000,200,145,230,1,1,1,1},
+			{800,210,45,30,2,1,1,1},
+			{100,0,0,0,3,2,0,1},
+			{300,0,0,0,4,2,0,1},
+			{1500,500,150,270,5,3,1,1},
+			{750,100,50,70,6,4,1,1},
+			{200,0,0,0,7,1,0,1},
+			{30,10,5,3,8,5,1,1},
+			{456,0,0,0,9,6,0,1}
 	};
 
 	int idCliente = CANTIDAD_CLIENTES;
@@ -55,7 +55,8 @@ int main(void) {
 					printf("6) IMPRIMIR CLIENTES\n");
 					printf("7) IMPRIMIR PEDIDOS PENDIENTES\n");
 					printf("8) IMPRIMIR PEDIDOS PROCESADOS\n");
-					printf("9) SALIR\n");
+					printf("9) INFORMES\n");
+					printf("10) SALIR\n");
 					utn_getInt(&opcion);
 					switch (opcion) {
 					case 1:
@@ -70,7 +71,6 @@ int main(void) {
 					case 3:
 						listarClientes(clientes,CANTIDAD_CLIENTES);
 						bajaCliente(clientes);
-						;
 						break;
 					case 4:
 						ordenarClientesPorId(clientes,CANTIDAD_CLIENTES);
@@ -102,14 +102,16 @@ int main(void) {
 					case 8:ordenarPedidosPorId(pedidos,CANTIDAD_PEDIDOS);
 						listarPedidosCompletos(pedidos,clientes);
 						break;
-					case 9:
+					case 9: menuInformes(pedidos, clientes);
+						break;
+					case 10:
 						printf("Gracias por usar el programa.\n");
 						break;
 					default:
 						printf("No ingreso una opcion valida.");
 						break;
 					}
-				} while (opcion != 9);
+				} while (opcion != 10);
 
 	return OK;
 }

@@ -110,7 +110,7 @@ int altaDePedido(s_pedido pedidos[],int index, int idPedido, int idCliente)
 	pedidos[index].kilosRetirados = 0;
 	if(pedidos != NULL)
 	{
-		if (utn_getNumber(&auxiliar,1000,100,2,"Ingrese Cantidad de kilos a retirar, sin coma, entre 100-1000:\n",
+		if (utn_getNumber(&auxiliar,2000,50,2,"Ingrese Cantidad de kilos a retirar, sin coma, entre 50-2000:\n",
 													"Fuera de rango valido\n")== 0)
 		{
 			pedidos[index].kilosRetirados = auxiliar;
@@ -303,6 +303,57 @@ void contadorPedidosPendientes(s_pedido pedidos[], int idCliente, int* cantidadP
 
 }
 
+/** \brief cuenta la cantidad de pedidos en estado procesado
+* \param list pedidos[]
+* \param int idCliente
+* \param int* cantidadProcesado
+*
+* \return void
+*
+*/
+void contadorPedidosProcesado(s_pedido pedidos[], int idCliente, int* cantidadProcesado)
+{
+	int i;
+	int contadorProcesado = 0;
+	if(pedidos != NULL)
+	{
+		for (i = 0; i < CANTIDAD_PEDIDOS; i++)
+		{
+			if (idCliente == pedidos[i].idCliente && pedidos[i].estado == 1)
+			{
+				contadorProcesado++;
+			}
+		}
+		*cantidadProcesado = contadorProcesado;
+	}
+
+}
+
+/** \brief cuenta la cantidad de pedidos
+* \param list pedidos[]
+* \param int idCliente
+* \param int* cantidadProcesado
+*
+* \return void
+*
+*/
+void contadorPedidos(s_pedido pedidos[], int idCliente, int* cantidadProcesado)
+{
+	int i;
+	int contadorProcesado = 0;
+	if(pedidos != NULL)
+	{
+		for (i = 0; i < CANTIDAD_PEDIDOS; i++)
+		{
+			if (idCliente == pedidos[i].idCliente)
+			{
+				contadorProcesado++;
+			}
+		}
+		*cantidadProcesado = contadorProcesado;
+	}
+
+}
 /** \brief busca si el id de pedido existe
 * \param list pedidos[]
 * \param int cantidad
@@ -332,3 +383,23 @@ int bucarPedidoExistente(s_pedido pedidos[], int cantidad, int* idParaProcesar)
 	}
 	return retorno;
 }
+
+void contadorKilosProcesados(s_pedido pedidos[], int idCliente, int* kilosProcesado)
+{
+	int i;
+	int contadorKilosProcesado = 0;
+	if(pedidos != NULL)
+	{
+		for (i = 0; i < CANTIDAD_PEDIDOS; i++)
+		{
+			if (idCliente == pedidos[i].idCliente)
+			{
+				contadorKilosProcesado += (pedidos[i].kilosHDPE + pedidos[i].kilosLDPE + pedidos[i].kilosPP);
+			}
+		}
+		*kilosProcesado = contadorKilosProcesado;
+	}
+
+}
+
+

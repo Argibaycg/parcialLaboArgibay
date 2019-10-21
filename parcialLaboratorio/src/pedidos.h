@@ -22,6 +22,9 @@ int buscarPedidoPorId(s_pedido pedidos[], int idPedido,int *pUbicacionPedido);
 int procesarResiduos(s_pedido pedidos[]);
 void ordenarPedidosPorId(s_pedido pedidos[], int cantidad);
 void contadorPedidosPendientes(s_pedido pedidos[], int idCliente, int* cantidadPendientes);
+void contadorPedidosProcesado(s_pedido pedidos[], int idCliente, int* cantidadProcesado);
+void contadorPedidos(s_pedido pedidos[], int idCliente, int* cantidadProcesado);
+void contadorKilosProcesados(s_pedido pedidos[], int idCliente, int* kilosProcesado);
 int bucarPedidoExistente(s_pedido pedidos[], int cantidad, int* idParaAlta);
 
 #endif /* PEDIDOS_H_ */
