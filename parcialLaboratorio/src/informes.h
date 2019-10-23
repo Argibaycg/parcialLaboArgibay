@@ -3,7 +3,6 @@
 #define INFORMES_H_
 
 int listarPedidoPendientes(s_pedido pedidos[], s_cliente clientes[]);
-
 int listarCantidadPedidosPendientes(s_pedido pedidos[], s_cliente clientes[]);
 int listarPedidosCompletos(s_pedido pedidos[], s_cliente clientes[]);
 int clienteConMasPedidosPendientes(s_pedido pedidos[], s_cliente clientes[]);
@@ -18,5 +17,6 @@ int clientesConMenosDeCienKilosProcesados(s_pedido pedidos[], s_cliente clientes
 int listarPedidosPendientesPorLocalidad(s_pedido pedidos[], s_cliente clientes[]);
 int cantidadDeKilosPPProcesadoPorCliente(s_pedido pedidos[], s_cliente clientes[]);
 int cantidadDeKilosProcesadosAEleccion(s_pedido pedidos[], s_cliente clientes[]);
+int bucarLocalidadExistente(s_cliente clientes[], int cantidad, char* localidad);
 
 #endif /* INFORMES_H_ */

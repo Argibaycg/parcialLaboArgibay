@@ -219,6 +219,13 @@ int listarCantidadPedidosPendientes(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief lista el cliente con mas pedidos pendientes
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int clienteConMasPedidosPendientes(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -254,6 +261,13 @@ int clienteConMasPedidosPendientes(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief lista el cliente con mas pedidos completados
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int clienteConMasPedidosCompletados(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -289,6 +303,13 @@ int clienteConMasPedidosCompletados(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief muestra el cliente con mas pedidos
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int clienteConMasPedidos(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -324,6 +345,13 @@ int clienteConMasPedidos(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief muestra el cliente que mas reciclo
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarClienteQueMasReciclo(s_pedido pedidos[], s_cliente clientes[])
 {
 		int retorno = ERROR;
@@ -355,6 +383,13 @@ int listarClienteQueMasReciclo(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief muestra el cliente que menos reciclo
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarClienteQueMenosReciclo(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -386,6 +421,13 @@ int listarClienteQueMenosReciclo(s_pedido pedidos[], s_cliente clientes[])
 		return retorno;
 	}
 
+/** \brief muestra el porcentaje de plastico reciclado mas el CUIT del cliente
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarPedidosCompletosConInformacion(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -426,6 +468,13 @@ int listarPedidosCompletosConInformacion(s_pedido pedidos[], s_cliente clientes[
 	return retorno;
 }
 
+/** \brief muestra el cliente con mas de mil kilos reciclados
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int clientesConMasDeMilKilosProcesados(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -452,6 +501,13 @@ int clientesConMasDeMilKilosProcesados(s_pedido pedidos[], s_cliente clientes[])
 	return retorno;
 }
 
+/** \brief muestra el cliente con menos de cien kilos procesados
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int clientesConMenosDeCienKilosProcesados(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -478,6 +534,13 @@ int clientesConMenosDeCienKilosProcesados(s_pedido pedidos[], s_cliente clientes
 	return retorno;
 }
 
+/** \brief lista los pedidos pendientes de acuerdo a la localidad ingresada por el usuario
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int listarPedidosPendientesPorLocalidad(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -486,6 +549,7 @@ int listarPedidosPendientesPorLocalidad(s_pedido pedidos[], s_cliente clientes[]
 	int cantidadPendientes = 0;
 	int auxiliar;
 	int indexCliente;
+	int flag = 0;
 	if(pedidos != NULL && clientes != NULL)
 	{
 		if(utn_getString("Ingrese la localidad: \n", "Localidad no valida.\n", buffer)==0)
@@ -495,31 +559,51 @@ int listarPedidosPendientesPorLocalidad(s_pedido pedidos[], s_cliente clientes[]
 				buffer[indice] = toupper(buffer[indice]);
 			}
 
-			for (i = 0; i < CANTIDAD_PEDIDOS; i++)
+			for (i = 0; i < CANTIDAD_CLIENTES; i++)
 			{
-				if (pedidos[i].isEmpty == 1 && pedidos[i].estado == 0)
+				if (clientes[i].localidad == buffer)
 				{
-					auxiliar = pedidos[i].idCliente;
-					indexCliente = buscarClientePorId(clientes,auxiliar);
-					if(strcmp(clientes[indexCliente].localidad,buffer)==0)
-					{
-						cantidadPendientes++;
-					}
+					flag = 1;
 				}
 			}
-			printf("La cantidad de Pedidos Pendientes para %s es: %d\n",buffer,cantidadPendientes);
-			retorno = OK;
+
+			if(flag==1)
+			{
+				for (i = 0; i < CANTIDAD_PEDIDOS; i++)
+				{
+					if (pedidos[i].isEmpty == 1 && pedidos[i].estado == 0)
+					{
+						auxiliar = pedidos[i].idCliente;
+						indexCliente = buscarClientePorId(clientes,auxiliar);
+						if(strcmp(clientes[indexCliente].localidad,buffer)==0)
+						{
+							cantidadPendientes++;
+						}
+					}
+				}
+				printf("La cantidad de Pedidos Pendientes para %s es: %d\n",buffer,cantidadPendientes);
+				retorno = OK;
+			}else
+			{
+				printf("Esa Localidad no esta ingresada en el sistema\n");
+			}
 		}
 	}
 
 	return retorno;
 }
 
+/** \brief muestra el porcentaje de PP procesado por los clientes
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int cantidadDeKilosPPProcesadoPorCliente(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
 	int i;
-	int j;
 	int auxiliar;
 	int totalRecicladoPP = 0;
 	int cantidadClientes = 0;
@@ -537,7 +621,6 @@ int cantidadDeKilosPPProcesadoPorCliente(s_pedido pedidos[], s_cliente clientes[
 			if (auxiliar == pedidos[i].idCliente && auxiliar != pedidos[i+1].idCliente )
 			{
 				cantidadClientes++;
-				printf("cantidadCLientes%d\n",cantidadClientes);
 			}
 		}
 		porcentajePpCliente = (float)totalRecicladoPP / cantidadClientes;
@@ -548,6 +631,13 @@ int cantidadDeKilosPPProcesadoPorCliente(s_pedido pedidos[], s_cliente clientes[
 	return retorno;
 }
 
+/** \brief muestra la cantidad de kilos procesados a eleccion del usuario
+* \param list clientes[]
+* \param list pedidos[]
+*
+* \return int Return (-1) if Error [Invalid length or NULL pointer or without free space] - (0) if Ok
+*
+*/
 int cantidadDeKilosProcesadosAEleccion(s_pedido pedidos[], s_cliente clientes[])
 {
 	int retorno = ERROR;
@@ -558,10 +648,26 @@ int cantidadDeKilosProcesadosAEleccion(s_pedido pedidos[], s_cliente clientes[])
 	char buffer[48];
 	int idCliente;
 	int totalReciclado = 0;
+	int flag = 0;
 	if(pedidos != NULL && clientes != NULL)
 	{
-		if(utn_getCuil("Ingrese el del cliente a bsucar CUIT xx-xxxxxxxx-x: \n", "Dato no valido.\n",buffer) == 0
-		&& utn_getNumber(&opcionPlastico,3,1,2,"Ingrese 1 para HDPE, 2 para LDPE o 3 para PP\n","Altura no valida")== 0)
+		if(utn_getCuil("Ingrese el del cliente a buscar CUIT xx-xxxxxxxx-x: \n", "Dato no valido.\n",buffer) == 0)
+		{
+			for (i = 0; i < CANTIDAD_CLIENTES; i++)
+			{
+				if (clientes[i].cuitCliente == buffer)
+				{
+					flag = 1;
+				}
+			}
+		}
+
+		if(flag == 0)
+		{
+			printf("Ingreso un CUIT que no existe en el sistema.\n");
+		}
+
+		if(flag == 1 && utn_getNumber(&opcionPlastico,3,1,2,"Ingrese 1 para HDPE, 2 para LDPE o 3 para PP\n","Altura no valida")== 0)
 		{
 			for (i = 0; i < CANTIDAD_PEDIDOS; i++)
 			{
@@ -591,10 +697,11 @@ int cantidadDeKilosProcesadosAEleccion(s_pedido pedidos[], s_cliente clientes[])
 						}
 					}
 			}
-		}
 		printf("La cantidad de %s procesado es: %d\n",tipoPlastico,totalReciclado);
 		retorno = OK;
+		}
 	}
 
 	return retorno;
 }
+
